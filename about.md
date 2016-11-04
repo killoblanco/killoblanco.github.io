@@ -4,7 +4,7 @@ title: Quien Soy
 permalink: /whoami/
 ---
 
-I give this plugin two :+1:! :grinning:
+/play secret
 
 Hola me llamo Kamilo Vasquez originario de la cuidad de Barranquilla al norte de Colombia; actualmente vivo en la ciudad de Bogotá (capital).
 
@@ -16,7 +16,7 @@ Ahora, luego de unos cuantos años programando he adquirido nuevas habilidades e
 
 ### More Information
 
-Aún no se que poner aqui!! :O :D :3
+Aún no se que poner aqui!! :scream: :grimacing:
 
 ### Escribeme
 
