@@ -1,17 +1,54 @@
----
-layout: default
----
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
+    {% include meta.html %}
 
-  <div class="entry">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}"
+          href="{{ site.baseurl }}/feed.xml"/>
+</head>
+<body>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-right">
+                <nav>
+                    <a href="{{ site.baseurl }}/">
+                        <i class="fa fa-newspaper-o"></i> Blog
+                    </a>
+                    <a href="{{ site.baseurl }}/whoami">.About Me</a>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="page-header text-center">
+                    <h1>{{ page.title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="date">
+        Written on {{ page.date | date: "%B %e, %Y" }}
+    </div>
+</div>
+<article class="container post">
     {{ content }}
-  </div>
-
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
-
-  {% include disqus.html %}
 </article>
+<div class="container">
+    {% include disqus.html %}
+</div>
+<!--<footer class="container text-center">-->
+    <!--{% include svg-icons.html %}-->
+<!--</footer>-->
+{% include analytics.html %}
+</body>
+</html>

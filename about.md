@@ -4,6 +4,8 @@ title: Quien Soy
 permalink: /whoami/
 ---
 
+I give this plugin two :+1:! :grinning:
+
 Hola me llamo Kamilo Vasquez originario de la cuidad de Barranquilla al norte de Colombia; actualmente vivo en la ciudad de Bogotá (capital).
 
 Cuando tenia 16 años conocí que era HTML y como funciona, con el tiempo me encontre con CSS y luego con JS; una vez habia comprendido bien como funcionaban y hacer muchas pruebas en ese computador de 50Gb de disco duro que tenia, investigue como hacer conecciones con bases de datos, que eran y como funcionaban. Asi fue como conoci PHP y junto con el MySQL.

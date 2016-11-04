@@ -7,6 +7,7 @@
 
 @import "reset";
 @import "variables";
+@import url('https://fonts.googleapis.com/css?family=Bitter|Raleway:100,400|Source+Code+Pro');
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -18,16 +19,21 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
+  background: $white;
+  font: 18px/1.4 $content-font;
   color: $darkGray;
 }
 
+
 .container {
-  margin: 0 auto;
+  margin: 2.2em auto;
   max-width: 740px;
   padding: 0 10px;
   width: 100%;
+
+  @include mobile {
+    width: 90%;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -69,11 +75,13 @@ p {
 }
 
 a {
-  color: $blue;
+  font-family: $headlines-font;
+  color: $teal;
   text-decoration: none;
-	cursor: pointer;
+  cursor: pointer;
+  transition: ease-in-out .15s;
   &:hover, &:active {
-    color: $blue;
+    color: $teal;
   }
 }
 
@@ -116,8 +124,10 @@ img {
 }
 
 .date {
-  font-style: italic;
-  color: $gray;
+  //font-style: italic;
+  font-family: $headlines-font;
+  //font-weight: 100;
+  //color: $gray;
 }
 
 // Specify the color of the selection
@@ -142,9 +152,9 @@ img {
     clear: both;
 }
 
-/*********************/
-/* LAYOUT / SECTIONS */
-/*********************/
+///*********************/
+///* LAYOUT / SECTIONS */
+///*********************/
 
 //
 // .masthead
@@ -176,7 +186,7 @@ img {
   }
 
   img {
-    border-radius: 5px;
+    border-radius: 50%;
   }
 }
 
@@ -252,6 +262,8 @@ nav {
 }
 
 .post {
+  text-align: justify;
+
   blockquote {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
@@ -271,16 +283,88 @@ nav {
   }
 }
 
-.wrapper-footer {
-  margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+.page {
+  text-align: justify;
+}
+//
+//.wrapper-footer {
+//  margin-top: 50px;
+//  border-top: 1px solid #ddd;
+//  border-bottom: 1px solid #ddd;
+//  background-color: $lightGray;
+//}
+//
+//footer {
+//  padding: 20px 0;
+//  text-align: center;
+//}
+
+////////////////
+// Custom Css //
+////////////////
+.container-fluid {
+  width: 90vw;
+  display: table;
+  margin: 0 auto;
+
+  @include mobile {
+    width: 90%;
+  }
 }
 
-footer {
-  padding: 20px 0;
+.row {
+  display: table-row;
+  height: auto;
+
+  .col-12 {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+  }
+
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+header {
+  height: 80vh;
+  background-image: url(images/river-1740973.jpg);
+  background-attachment: local;
+  background-size: cover;
+  background-position: center center;
+
+  nav {
+    padding-top: 2.3em;
+    font-family: $headlines-font;
+    font-size: 18px;
+    text-align: right;
+    a {
+      color: white;
+      margin-left: 20px;
+      text-align: right;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
+
+  .page-header {
+    padding-top: 20vh;
+
+    h1 {
+      color: white;
+
+    }
+  }
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
