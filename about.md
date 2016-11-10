@@ -10,7 +10,7 @@ Cuando tenia 16 años conocí que era HTML y como funciona, con el tiempo me enc
 
 Luego de todo ese proceso y tener las bases de la programación planteada en mi mente decidi empezar a trabajar y utilizar todo ese conocimiento que ya tenia, por supuesto, mi primer trabajo como programador me enseño que debia seguir reforzando mis conocimientos y aprender formas de trabajo mas eficientes y efectivas.
 
-Ahora, luego de unos cuantos años programando he adquirido nuevas habilidades en muchos ambitos de mi vida ("ahora programo en python :3"), que me han hecho crecer lo suficiente para decidirme a crear un blog y mostrar mi conocimiento y mis habilidades para ayudar a los demas a no repetir los mismos errores que yo cuando estaba aprendiendo.
+Ahora, luego de unos cuantos años programando he adquirido nuevas habilidades en muchos ambitos de mi vida ("aprendi a programar en python ☺️"), que me han hecho crecer lo suficiente para decidirme a crear un blog y mostrar mi conocimiento y mis habilidades para ayudar a los demas a no repetir los mismos errores que yo cuando estaba aprendiendo.
 
 ### More Information
 
