@@ -55,4 +55,4 @@ Este es el ultimo paso y no es para nada complejo, lo primero que debemos hacer 
 
 En este momento nuestro repositorio ya esta listo para ser descargado por el mundo entero, sin embargo las actualizaciones automaticas no estan habilitadas, esto quiere decir que cada vez que hagamos un cambio en nuestro repositorio tendremos que ir a nuestra cuenta de packagist.org para actualizarlo. Por suerte existe un modo de automatizar esto, lo primero que debemos hacer es ir a nuestro la configuracion de nuestro repositorio y en el area de "Integraciones y servicios" haremos click en "agregar servicio"
 
-![GitHub-Integraciones-&-Servicios](https://s3.amazonaws.com/s3-killoblanco/Blog/Captura+de+pantalla+2016-11-13+a+las+2.56.02+p.m..png)
+![GitHub-Integraciones-&-Servicios]({{site.baseurl}}/images/Captura+de+pantalla+2016-11-13+a+las+2.56.02+p.m..png)
