@@ -31,4 +31,8 @@ cd path/to/your/bundle
 composer init
 {% endhighlight %}
 
-Este comando nos mostrara un asistenete para la creacion de nuestro archivo composer json.
+Este comando nos mostrara un asistenete para la creacion de nuestro archivo composer.json, luego de terminar con el asistente solo nos queda un paso mas antes de poder continuar, y es agregar el atributo autoload a nuestro archivo generado.
+
+El sitio [php-fig.org](http://www.php-fig.org/psr/psr-4/) nos define el psr-4 de la siguiente manera:
+
+> Este PSR describe una especificación para las clases de carga automática desde las rutas de archivo. Es completamente interoperable y puede utilizarse además de cualquier otra especificación de autoloading, incluyendo PSR-0. Este PSR también describe dónde colocar los archivos que se cargarán automáticamente de acuerdo con la especificación.
