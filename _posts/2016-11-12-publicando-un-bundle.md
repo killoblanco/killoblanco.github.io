@@ -36,3 +36,13 @@ Este comando nos mostrara un asistenete para la creacion de nuestro archivo comp
 El sitio [php-fig.org](http://www.php-fig.org/psr/psr-4/) nos define el psr-4 de la siguiente manera:
 
 > Este PSR describe una especificación para las clases de carga automática desde las rutas de archivo. Es completamente interoperable y puede utilizarse además de cualquier otra especificación de autoloading, incluyendo PSR-0. Este PSR también describe dónde colocar los archivos que se cargarán automáticamente de acuerdo con la especificación.
+
+En otras palabras lo que hace es decir como se llaman los archivos que va a descargar y donde los debe colocar.
+
+{% highlight json %}
+"autoload": {
+	"psr-4": {"<path>":"<path_in_path>"}
+}
+{% endhighlight %}
+
+En la practica, el valor de **<path>** será
