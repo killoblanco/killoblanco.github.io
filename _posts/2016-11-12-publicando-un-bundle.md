@@ -41,8 +41,18 @@ En otras palabras lo que hace es decir como se llaman los archivos que va a desc
 
 {% highlight json %}
 "autoload": {
-	"psr-4": {"<path>":"<path_in_path>"}
+    "psr-4": {"<path>":"<path_in_path>"}
 }
 {% endhighlight %}
 
-En la practica, el valor de **<path>** será
+En la practica, el valor de **path** será el directorio en donde se instalara nuestro bundle dentro de vendor, y el valor de **path_in_path** será el directorio dentro de path.
+
+Ya con esto claro podremos pasar a nuestro ultimo paso.
+
+### Packagist
+
+Este es el ultimo paso y no es para nada complejo, lo primero que debemos hacer es crear una cuenta en [packagist.org](https://packagist.org/), un vez estemos logueados le damos al boton de submit y pegamos la url de nuestro repositorio en GitHub.
+
+En este momento nuestro repositorio ya esta listo para ser descargado por el mundo entero, sin embargo las actualizaciones automaticas no estan habilitadas, esto quiere decir que cada vez que hagamos un cambio en nuestro repositorio tendremos que ir a nuestra cuenta de packagist.org para actualizarlo. Por suerte existe un modo de automatizar esto, lo primero que debemos hacer es ir a nuestro la configuracion de nuestro repositorio y en el area de "Integraciones y servicios" haremos click en "agregar servicio"
+
+![GitHub-Integraciones-&-Servicios](https://s3.amazonaws.com/s3-killoblanco/Blog/Captura+de+pantalla+2016-11-13+a+las+2.56.02+p.m..png)
