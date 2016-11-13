@@ -56,3 +56,7 @@ Este es el ultimo paso y no es para nada complejo, lo primero que debemos hacer 
 En este momento nuestro repositorio ya esta listo para ser descargado por el mundo entero, sin embargo las actualizaciones automaticas no estan habilitadas, esto quiere decir que cada vez que hagamos un cambio en nuestro repositorio tendremos que ir a nuestra cuenta de packagist.org para actualizarlo. Por suerte existe un modo de automatizar esto, lo primero que debemos hacer es ir a nuestro la configuracion de nuestro repositorio y en el area de "Integraciones y servicios" haremos click en "agregar servicio"
 
 ![GitHub-Integraciones-&-Servicios](https://s3.amazonaws.com/s3-killoblanco/Blog/Captura+de+pantalla+2016-11-13+a+las+2.56.02+p.m..png)
+
+Cuando le damos click en agregar servicio escribimos "Packagist" y le damos enviar, ahora lo unico que nos queda es agregar el nombre de usuario y token de nuestro perfil de Packagist y listo! ya tendremos un bundle distribuido y automatizado para las actualizaciones.
+
+Antes de terminar quiero decir que esta fue la forma como me funciono, sin embargo se debe tener en cuenta que podrian existir mejores formas para hacerlo. De ser asi deja tu comentario para poder mantener esta informacion lo mas completa posible.
