@@ -26,9 +26,9 @@ En la [documentacion oficial de symfony](https://symfony.com/doc/current/bundles
 
 Posiblemente este archivo ha sido el que mas trabajo me ha dado en comprender, y luego de muchos intentos, encontre lo que para mi fue la manera mas sencilla de crear este archivo. Lo primero que debemos hacer es abrir una consola y dentro navegamos hasta nuestro proyecto para poder correr el comando composer init.
 
-```SHEL
-
+{% highlight shell %}
 cd path/to/your/bundle
 composer init
+{% endhighlight %}
 
-```
+Este comando nos mostrara un asistenete para la creacion de nuestro archivo composer json.
