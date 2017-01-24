@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Publicando un bundle!
+title: Publicando un bundle para symfony!
 published: true
 ---
 
