@@ -105,6 +105,7 @@ python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
 ```
+
 ### Configuracion de Apache y WGSI_MOD
 
 Ya en este punto solo hace falta instalar el wsgi_mod y crear el virtual host para servir nuestra aplicacion. Para instalar el wsgi_mod lo descargamos por aptitude y luego reiniciamos el servidor apache asi:
@@ -146,10 +147,10 @@ sudo nano /etc/apache2/sites-available/djangoProject.conf
   WSGIProcessGroup python.djangoProject.dev
   
   <Directory /var/www/public/djangoProject/djangoProject/>
-    <Files wsgi.py>
-			Require all granted
-		</Files>
-	</Directory>
+  	<Files wsgi.py>
+    		Require all granted
+	</Files>
+  </Directory>
 	
 	Alias /robots.txt /var/www/public/djangoProject/static/robots.txt
 	Alias /favicon.ico /var/www/public/djangoProject/static/favicon.ico
@@ -188,7 +189,3 @@ sudo nano /etc/hosts
 #Y agregamos la siguiente linea
 127.0.0.1	python.djangoproject.dev
 ```
-
-### Configuracion del Projecto del lado del cliente
-
-... To be continue ...
