@@ -4,9 +4,7 @@ title: Como configurar un servidor Apache para ejecutar una aplicación en Djang
 published: true
 ---
 
-# Como configurar un servidor Apache para ejecutar una aplicación en Django
-
-Este archivo te guiara paso a paso hacia la configuración de un servidor apache que ejecute aplicaciones creadas con Django el web framework de Python. Este archivo está pensado para que cualquier persona con algunos conocimientos básicos pueda crear su propio servidor capaz de servir páginas web creadas con Django, ya sea para desarrollo en vivo o para crear un servidor virtual en el propio equipo.
+Este tutorial te guiara paso a paso hacia la configuración de un servidor apache que ejecute aplicaciones creadas con Django el web framework de Python. Este archivo está pensado para que cualquier persona con algunos conocimientos básicos pueda crear su propio servidor capaz de servir páginas web creadas con Django, ya sea para desarrollo en vivo o para crear un servidor virtual en el propio equipo.
 
 Para esta guía se trabajará con una máquina virtual corriendo bajo [virtualbox](https://www.virtualbox.org/wiki/Downloads) la cual tiene instalado el servidor [Ubuntu Server 14.04](http://www.ubuntu.com/download/server)
 
