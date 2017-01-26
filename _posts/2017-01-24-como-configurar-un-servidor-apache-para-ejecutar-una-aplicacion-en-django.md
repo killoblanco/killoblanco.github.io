@@ -1,101 +1,85 @@
----
-layout: post
-title: Como configurar un servidor Apache para ejecutar una aplicación en Django
-published: true
----
+Cómo configurar un servidor Apache para ejecutar una aplicación en Django
 
-Este tutorial te guiara paso a paso hacia la configuración de un servidor apache que ejecute aplicaciones creadas con Django el web framework de Python. Este archivo está pensado para que cualquier persona con algunos conocimientos básicos pueda crear su propio servidor capaz de servir páginas web creadas con Django, ya sea para desarrollo en vivo o para crear un servidor virtual en el propio equipo.
+Esta miniguia muestra de manera detallada paso por paso cómo preparar un servidor apache para que sea capaz de entender e interactuar con aplicaciones web creadas con Django (web framework de Python.), para empezar con la guía es necesario que tengas disponible un servidor linux con permisos suficientes para ejecutar comandos en él; sin embargo, puedes también simplemente leer esta guía y enterarte un poco de qué va todo este rollo.
 
-Para esta guía se trabajará con una máquina virtual corriendo bajo [virtualbox](https://www.virtualbox.org/wiki/Downloads) la cual tiene instalado el servidor [Ubuntu Server 14.04](http://www.ubuntu.com/download/server)
+Ya entrados en detalles, la configuración con la cual estaré trabajando en esta guía es de un servidor [Ubuntu 16.x](http://www.ubuntu.com/download/server)  instalado en una [máquina virtual](https://www.virtualbox.org/wiki/Download).
 
-## Índice
-- [Consideraciones para el VirtualBox](#consideraciones-para-el-virtualbox)
-- [Consideraciones para el servidor](#consideraciones-para-el-servidor)
-- [Instalando y configurando GIT en el servidor](#instalando-y-configurando-git-en-el-servidor)
-- [Configuración de Apache y WSGI_MOD](#configuracion-de-apache-y-wgsi_mod)
+### Consideraciones para la máquina virtual
 
-### Consideraciones para el VirtualBox
-
-Lo más importante para este proyecto es, una vez se tenga la máquina virtual configurada asegurarse que en la pestaña de 'Red' la opción 'Cable Conectado' bajo el menú de avanzadas este seleccionada. Una vez, se halla verificado esta configuración se puede proceder a iniciar la máquina virtual o a instalar el servidor.
+Si estás empezando a trabajar con software de máquinas virtuales es importante que tengas claro que para poder seguir esta guía tu máquina virtual debe estar conectada a internet. Programas como virtualbox tiene una opción dentro de la configuración de cada máquina bajo el menú de red que permite conectar dicha máquina bajo el adaptador de puente. Esto usualmente es suficiente para hacer que tu máquina virtual esté conectada a internet.
 
 ### Consideraciones para el servidor
 
-Pese a que no es necesario, personalmente recomiendo reiniciar el servidor o la máquina virtual bien sea después de cada instalación o después de un grupo de instalaciones para asegurarse de que las instalaciones se completen y los servicios de ser el caso se inicien.
+Si bien es claro que en la mayoría de casos cuando instalamos un programa o algún tipo de complemento en nuestras computadoras no es necesario reiniciar todo el sistema para poder empezar a usar dicho programa; sin embargo, personalmente recomiendo que cada determinado número de tareas reiniciemos el servidor para asegurarnos de que no tengamos futuros fallos en ejecución de servicios por ejemplo.
 
-Lo más importante al momento de estar instalando el servidor en nuestra máquina virtual es asegurarnos de seleccionar el servicio LAMP; sin embargo, si por error no se ha instalado se puede [instalar manualmente apache, mysql y php](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu).
+Lo mínimo que necesitaremos en cuanto al servidor es asegurarnos de que tengamos instalado el servicio LAMP, si aún no tienes LAMP instalado puedes revisar [cómo instalar manualmente apache, mysql y php en ubuntu.](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu)
+
 
 En cuanto a MySQL es importante tener configurado mysql_config como una variable de entorno, para ello podemos ejecutar el siguiente comando:
 
-```sh
+```bash
 sudo apt-get install libmysqlclient-dev
 ```
 
-Del mismo modo es recomendable una ves el servidor se halla terminado de instalar ejecutar el siguiente comando antes de instalar cualquier software adicional
+Del mismo modo es recomendable una vez el servidor se haya terminado de instalar, ejecutar el siguiente comando antes de instalar cualquier software adicional. Esto actualizará todas las dependencias del sistema.
 
-```sh
+```bash
 sudo apt-get update && sudo apt-get upgrade
 ```
 
-El entorno de consola de Ubuntu server puede ser muy complicado de manejar si no se tiene experiencia con el Shell Script sin embargo considero que para facilitar el manejo del servidor se puede instalar el entorno grafico y el manejador de usuarios.
+El entorno de consola de Ubuntu server puede ser muy complicado de manejar si no se tiene experiencia con el Shell Script sin embargo considero que para facilitar el manejo del servidor se puede instalar el entorno gráfico y el manejador de usuarios.
 
 Ubuntu GUI se instala con el comando:
-```sh
+```bash
 sudo apt-get install ubuntu-desktop
 ```
 Ubuntu Usuarios y Grupos
-```sh
+```bash
 sudo apt-get install gnome-system-tools
 ```
-Luego de esto estamos listos para empezar a configurar el servidor para trabajar con Python
 
-### Instalando y Configurando Git en el servidor
+Ahora que tenemos una interfaz grafica, accedemos a un terminal y empezamos a instalar nuestras dependencias, empezaremos instalando el servidor ssh y git. Para ello solo ejecutamos los comandos.
 
-Antes de instalar Git dentro de nuestros servidores es importante instalar openSSH el cual nos permitira conectarnos al servidor de manera remota para poder asi ejecutar comandos como el de clonar el repositorio en git desde nuestro servirdor a nuestro equipo, para ello ejecutamos el comando:
-
-```sh
-sudo apt-get install openssh-server 
-```
-Luego de tener el servidor ssh activo es momento de instalar el git en nuestro servidor el cual nos permitira hacer deploy de nuestras aplicaciones, asi.
-```sh
+```bash
+sudo apt-get install openssh-server
 sudo apt-get install git
 ```
-En este pundo ya tenemos git instalado dentro de nuestro servidor, el siguiente paso es configurar una carpeta para que sea la que manejara el repositorio y otra que sera hacia donde apuntara nuestro servidor Apache para poder servir las paginas.
 
-Si en algun momento no se puede hacer ninguna de las acciones que siguen de aqui en adelante puede ser que el directorio o archivo no tiene suficientes permisos, para ello se puede ejecutar el comando `sudo chmod -R 777 /path/to/folder/file` y podria ser suficiente para continuar.
+Luego de esto estamos listos para empezar a configurar el servidor para trabajar con Python. En este punto necesitamos darle a nuestro servidor la capacidad de crear entornos virtuales e instalar dependencias de python.
 
-```sh
-sudo mkdir /var/www/git (Directorio donde se guardaran los repositorios)
-sudo mkdir /var/www/public (Directorio donde se haran los despliegues)
+```bash
+sudo apt install virtualenv
+sudo apt install python-pip
 ```
-Luego de tener esto listo lo siguiente es crear el repositorio que almacenara nuestro proyecto y luego de ello lo configuramos para hacer despliegues automaticos a nuestra carpeta publica la cual estará observando nuestro Apache.
 
-```sh
-sudo git init --bare /var/www/git/djangoProject.git
+En caso de ya tener `pip` instalado, es recomendable actualizarlo.
 
-#Ahora activamos el hook "post-update" de git y lo editamos con lo siguiente
-sudo nano /var/www/git/djangoProject.git/hooks/post-update
+```bash
+pip install -U pip
+```
 
-#Este debe ser el contenido final de nuestro hook
----
-#!/bin/sh
+Bien en este punto ya tenemos la base lista para empezar a crear nuestro entorno, basicamente crearemos un espacio en nuestro servidor para poder almacenar una copia cifrada de nuestro repositorio y otro espacio para almacenar la informacion que consumirá apache.
+
+```bash
+sudo mkdir /var/www/git
+sudo mkdir /var/www/public
+sudo git init --bare /var/www/git/<reponame>.git
+```
+
+Ahora modificaremos el hook post update del repositorio para que cree el despliegue automatico cuando hagamos push.
+
+```bash
+sudo nano /var/www/git/<reponame>.git/hooks/post-update
+```
+
+Una vez dentro hacemos que se vea algo parecido a esto:
+
+```bash
+#!/bin/bash
 unset GIT_DIR
-cd /var/www/public/djangoProject/
+cd /var/www/public/<reponame>/
 git fetch --force
 git merge origin/master
-
-#Es momento de clonar nuestro projecto en la carpeta publica y configurarlo para recivir el projecto de Django
-sudo mkdir /var/www/public/djangoProject
-cd /var/www/public/djangoProject
-sudo git clone /var/www/git/djangoProject.git .
-
-#Una ves clonado el repositorio editamos el archivo "post-merge"
-sudo echo >> /var/www/public/djangoProject/.git/hooks/post-merge
-sudo nano /var/www/public/djangoProject/.git/hooks/post-merge
-
-#El archivo final debe se algo como esto
----
-#!/bin/sh
-cd /var/www/public/djangoProject/
 if [ ! -d "env/" ]; then
   virtualenv env
 fi
@@ -106,86 +90,114 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### Configuracion de Apache y WGSI_MOD
+Genial, en este punto solo nos falta conectar los repositorios, para ello debemos clonar el repositorio en lo que se convertirar en nuestro directorio "publico" de apache.
 
-Ya en este punto solo hace falta instalar el wsgi_mod y crear el virtual host para servir nuestra aplicacion. Para instalar el wsgi_mod lo descargamos por aptitude y luego reiniciamos el servidor apache asi:
+```bash
+cd /var/www/public/
+sudo git clone /var/www/git/<reponame>.git
+```
 
-```sh
-sudo aptitude install libapache2-mod-wsgi (v14.x)
-sudo aptitude install libapache2-mod-wsgi (v16.x)
+Este comando nos debio haber dejado una carpeta <reponame> dentro de public, el ultimo paso para terminar la preparacion de los directorios que recibiran nuestros archivos es darle permisos a nuestros directorios de forma recursiva. (Advertencia: si estas siguiendo esta guia en un servidor real al cual se conecten mas personas, quisas debas considerar darle permiso solo a los directorios que acabamos de crear.)
+
+```bash
+sudo chmod 777 -R /var/www/
+```
+
+Perfecto ahora solo hace falta crear el hostvirtual en apache para empezar a servir nuestras paginas web. Lo primero que tenemos que hacer es instalar wsgi_mod en apache para que sea capas de comunicarse con python.
+
+```bash
+sudo apt install libapache2-mod-wsgi
 sudo service apache2 restart
 ```
-En este momento ya tenemos la libreria wsgi_mod instalada y ejecutandose desde nuestro servidor es momento de crear el archivo de configuración para nuestro virtual host.
 
-```sh
-sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/djangoProject.conf
-#Es importante tener en cuenta que la extencion del archivo sea .conf de lo contrario no funcionará
+Una ves apache se halla reiniciado tendremos el modulo instalado y activado en apache. A este punto solo nos queda configurar el hostvirtual.
 
-#Luego de haber copiado el archivo lo editamos
-sudo nano /etc/apache2/sites-available/djangoProject.conf
+```bash
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/<reponame>.conf
+sudo nano /etc/apache2/sites-available/<reponame>.conf
+```
 
-#El archivo final debe quedar asi:
----
-<VirtualHost *:80>
-  #Por convencion personal uso para los nombres de dominio la siguiente convencion
-  #lenguaje.nombre_del_proyecto.rama_de_git
-  ServerName python.djangoproject.dev
+Ahora que tenemos creado el archivo del hostvirtual, solo es modificarlo para que se paresca a esto.
+
+```apacheconf
+<VirtualHost *:80>  
+  # Por convencion personal uso para los nombres de dominio la siguiente convencion
+  # lenguaje.nombre_del_proyecto.rama_de_git
+  ServerName python.<reponame>.dev
   ServerAdmin admin@email.com
-  #El document root debe hacer referencia a la carpeta donde esta nuestro projecto
-  DocumentRoot /var/www/public/djangoProject/
+  # El document root debe hacer referencia a la carpeta donde esta nuestro projecto
+  DocumentRoot /var/www/public/<reponame>/
   
-  #El WSGIScriptAlias optiene 2 parametros el primero hace referencia a la ruta y el segundo al archivo wsgi.py de nuestro projecto
-  WSGIScriptAlias / /var/www/public/djangoProject/djangoProject/wsgi.py
-  #El WDGIDaemonProcess recibe los siguientes parametros
+  # El WSGIScriptAlias optiene 2 parametros el primero hace referencia a la ruta y el segundo al archivo wsgi.py de nuestro projecto
+  WSGIScriptAlias / /var/www/public/<reponame>/<projectname>/wsgi.py
+
+  # El WDGIDaemonProcess recibe los siguientes parametros
   # - ServerName
   # - El ejecutable de python relacionado al DocumentRoot
   # - La cantidad de procesos, para lo cual es recomendable dejarlo en 2
   # - Los threads, del mismo modo se recomienda dejarlo en 15
   # - Y el nombre a mostrar
-  WSGIDaemonProcess python.djangoproject.dev python-path=/var/www/public/djangoProject:/var/www/public/djangoProject/venv/lib/python2.7/site-packages processes=2 threads=15 display-name=%{GROUP}
+  WSGIDaemonProcess python.<reponame>.dev python-path=/var/www/public/<reponame>:/var/www/public/<reponame>/env/lib/python2.7/site-packages processes=2 threads=15 display-name=%{GROUP}
   # El WSGIProcessGroup hace referencia al ServerName
-  WSGIProcessGroup python.djangoProject.dev
+  WSGIProcessGroup python.<reponame>.dev
   
-  <Directory /var/www/public/djangoProject/djangoProject/>
-  	<Files wsgi.py>
-    		Require all granted
-	</Files>
+  <Directory /var/www/public/<reponame>/<projectname>/>
+    <Files wsgi.py>
+      Require all granted
+    </Files>
   </Directory>
-	
-	Alias /robots.txt /var/www/public/djangoProject/static/robots.txt
-	Alias /favicon.ico /var/www/public/djangoProject/static/favicon.ico
-	
-	#El directorio "static" sera el encargado de servir los archivos css, js, etc...
-  Alias /static/ /var/www/public/djangoProject/static
-	
-	<Directory /var/www/public/djangoProject/static>
-	  Require all granted
-	</Directory>
-	
-	#El directorio "media" se encarga en este caso de servir las imagenes, videos y demas
-	Alias /media/ /var/www/public/djangoProject/media/
-	
-	<Directory /var/www/public/djangoProject/media>
-	  Require all granted
-	</Directory>
+  
+  Alias /robots.txt /var/www/public/<reponame>/static/robots.txt
+  Alias /favicon.ico /var/www/public/<reponame>/static/favicon.ico
+  
+  # El directorio "static" sera el encargado de servir los archivos css, js, etc...
+  Alias /static/ /var/www/public/<reponame>/static
+  
+  <Directory /var/www/public/<reponame>/static>
+    Require all granted
+  </Directory>
+  
+  # El directorio "media" se encarga en este caso de servir las imagenes, videos y demas
+  Alias /media/ /var/www/public/<reponame>/media/
+  
+  <Directory /var/www/public/<reponame>/media>
+    Require all granted
+  </Directory>
 
-	#LogLevel info ssl:warn
+  # LogLevel info ssl:warn
 
-	ErrorLog ${APACHE_LOG_DIR}/error.log
-	CustomLog ${APACHE_LOG_DIR}/access.log combined
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-	#Include conf-available/serve-cgi-bin.conf
+  # Include conf-available/serve-cgi-bin.conf
 </VirtualHost>
+
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
----
-
-#Una vez tengamos nuestro la configuracion del vhost creada debemos activar el host y reiniciar el servicio asi:
-sudo a2ensite djangoProject.conf
-sudo service apache2 restart
-
-#Para terminar la configuracion del servidor solo falta agregar el ServerName a nuestro host agregando lo siguiente:
-sudo nano /etc/hosts
-
-#Y agregamos la siguiente linea
-127.0.0.1	python.djangoproject.dev
 ```
+
+Con este paso terminado, aun nos falta activar nuestro host y reiniciar apache para que lo reconosca.
+
+```bash
+sudo a2ensite <reponame>.conf
+sudo service apache2 restart
+```
+
+Perfecto, a este punto tenemos nuestra maquina virtual lista para servir nuestro projecto escrito en python. Ahora debemos hacer que nuestra computadora se comunique con el servidor, este proceso es corto y debe ir tanto en nuestro servidor como en nuestra computadora.
+
+```bash
+# UNIX
+sudo nano /etc/host
+# Windows (como administrador)
+notepad C:\Windows\System32\drivers\etc\hosts
+```
+
+Ahora agregamos al host el host name que asignamos en nuestro host virtual.
+
+```bash
+# Servidor
+127.0.0.1   python.<reponame>.dev
+# Cliente (ip del servidor)
+x.x.x.x     python.<reponame>.dev
+```
+
+Con esto ya podremos acceder a nuestro projecto desde nuestra computadora consumiento el servidor que acabamos de configurar.
