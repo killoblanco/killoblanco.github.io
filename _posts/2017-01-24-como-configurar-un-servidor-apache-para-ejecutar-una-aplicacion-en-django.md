@@ -4,7 +4,7 @@ title: Cómo configurar un servidor Apache para ejecutar una aplicación en Djan
 published: true
 ---
 
-Esta mini guía muestra de manera detallada paso por paso cómo preparar un servidor apache para que sea capaz de entender e interactuar con aplicaciones web creadas con Django (web framework de Python.), para empezar con la guía es necesario que tengas disponible un servidor Linux con permisos suficientes para ejecutar comandos en él; sin embargo, puedes también simplemente leer esta guía y enterarte un poco de qué va todo este rollo.
+Esta mini guía muestra de manera detallada paso a paso cómo preparar un servidor apache para que sea capaz de entender e interactuar con aplicaciones web creadas con Django (web framework de Python.), para empezar con la guía es necesario que tengas disponible un servidor Linux con permisos suficientes para ejecutar comandos en él; sin embargo, puedes también simplemente leer esta guía y enterarte un poco de qué va todo este tema.
 
 Ya entrados en detalles, la configuración con la cual estaré trabajando en esta guía es de un servidor [Ubuntu 16.x](http://www.ubuntu.com/download/server) instalado en una [máquina virtual](https://www.virtualbox.org/wiki/Download).
 
@@ -14,7 +14,9 @@ Si estás empezando a trabajar con software de máquinas virtuales es importante
 
 ### Consideraciones para el servidor
 
-Si bien es claro que en la mayoría de casos cuando instalamos un programa o algún tipo de complemento en nuestras computadoras no es necesario reiniciar todo el sistema para poder empezar a usar dicho programa; sin embargo, personalmente recomiendo que cada determinado número de tareas reiniciemos el servidor para asegurarnos de que no tengamos futuros fallos en ejecución de servicios, por ejemplo.
+Aunque es claro, que en la mayoría de casos cuando instalamos un programa o algún tipo de complemento en nuestras computadoras no es necesario reiniciar todo el sistema para poder empezar a usar dicho programa; personalmente recomiendo que cada determinado número de tareas reiniciemos el servidor para asegurarnos de que no tengamos futuros fallos en ejecución de servicios, por ejemplo.
+
+
 
 Lo mínimo que necesitaremos en cuanto al servidor es asegurarnos de que tengamos instalado el servicio LAMP, si aún no tienes LAMP instalado puedes revisar [cómo instalar manualmente Apache, MySQL y PHP en ubuntu.](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu)
 
@@ -25,13 +27,13 @@ En cuanto a MySQL es importante tener configurado mysql_config como una variable
 sudo apt-get install libmysqlclient-dev
 ```
 
-Del mismo modo es recomendable una vez el servidor se haya terminado de instalar, ejecutar el siguiente comando antes de instalar cualquier software adicional. Esto actualizará todas las dependencias del sistema.
+Del mismo modo es recomendable que una vez el servidor se haya terminado de instalar, se ejecute el siguiente comando antes de instalar cualquier software adicional. Esto actualizará todas las dependencias del sistema.
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade
 ```
 
-El entorno de consola de Ubuntu server puede ser muy complicado de manejar si no se tiene experiencia con el Shell Script sin embargo considero que para facilitar el manejo del servidor se puede instalar el entorno gráfico y el manejador de usuarios.
+El entorno de consola de Ubuntu server puede ser muy complicado de manejar si no se tiene experiencia con el Shell Script, sin embargo considero que para facilitar el manejo del servidor se puede instalar el entorno gráfico y el manejador de usuarios.
 
 Ubuntu GUI se instala con el comando:
 ```bash
@@ -49,7 +51,7 @@ sudo apt-get install openssh-server
 sudo apt-get install git
 ```
 
-Luego de esto estamos listos para empezar a configurar el servidor para trabajar con Python. En este punto necesitamos darle a nuestro servidor la capacidad de crear entornos virtuales e instalar dependencias de Python.
+Luego de esto, estamos listos para empezar a configurar el servidor para trabajar con Python, en este punto necesitamos darle a nuestro servidor la capacidad de crear entornos virtuales e instalar dependencias de Python.
 
 ```bash
 sudo apt install virtualenv
@@ -62,7 +64,7 @@ En caso de ya tener `pip` instalado, es recomendable actualizarlo.
 pip install -U pip
 ```
 
-Bien en este punto ya tenemos la base lista para empezar a crear nuestro entorno, básicamente crearemos un espacio en nuestro servidor para poder almacenar una copia cifrada de nuestro repositorio y otro espacio para almacenar la información que consumirá apache.
+Bien, en este punto ya tenemos la base lista para empezar a crear nuestro entorno, básicamente crearemos un espacio en nuestro servidor para poder almacenar una copia cifrada de nuestro repositorio y otro espacio para almacenar la información que consumirá apache.
 
 ```bash
 sudo mkdir /var/www/git
@@ -107,21 +109,22 @@ Este comando nos debió haber dejado una carpeta <reponame> dentro de public, el
 sudo chmod 777 -R /var/www/
 ```
 
-Perfecto ahora solo hace falta crear el host virtual en apache para empezar a servir nuestras páginas web. Lo primero que tenemos que hacer es instalar wsgi_mod en apache para que sea capaz de comunicarse con Python.
+Perfecto, ahora solo hace falta crear el host virtual en apache para empezar a servir nuestras páginas web. Lo primero que tenemos que hacer es instalar wsgi_mod en apache para que sea capaz de comunicarse con Python.
 
 ```bash
 sudo apt install libapache2-mod-wsgi
 sudo service apache2 restart
 ```
 
-Una vez apache se halla reiniciado tendremos el modulo instalado y activado en apache. A este punto solo nos queda configurar el host virtual.
+Una vez apache se halla reiniciado tendremos el modulo instalado y activado,  a este punto solo nos queda configurar el host virtual.
+
 
 ```bash
 sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/<reponame>.conf
 sudo nano /etc/apache2/sites-available/<reponame>.conf
 ```
 
-Ahora que tenemos creado el archivo del host virtual, solo es modificarlo para que se parezca a esto.
+Ahora que tenemos creado el archivo del host virtual, solo es modificarlo para que se a semeje a lo siguiente:
 
 ```apacheconf
 <VirtualHost *:80>  
@@ -204,9 +207,9 @@ Ahora agregamos al host el host name que asignamos en nuestro host virtual.
 x.x.x.x     python.<reponame>.dev
 ```
 
-Con esto ya podremos acceder a nuestro proyecto desde nuestra computadora consumiendo el servidor que acabamos de configurar.
+Con esto ya podremos acceder a nuestro proyecto desde nuestra maquina consumiendo el servidor que acabamos de configurar.
 
-Al principio de la guía configuramos un servidor git para hacer los despliegues automáticos al hacer pus, es momento de hacer nuestro primer despliegue.
+Al principio de la guía configuramos un servidor git para hacer los despliegues automáticos al hacer push, es momento de hacer nuestro primer despliegue.
 
 En tu computadora local clona el repositorio que acabamos de crear así.
 
