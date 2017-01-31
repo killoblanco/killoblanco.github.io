@@ -1,33 +1,15 @@
+// 
+// Variables file
+// 
 
-//
-// VARIABLES
-//
+// Cloud Fonts
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oxygen');
 
-// Colors
-$blue: #4183C4;
-
-// Grays
-$black: #000;
-$darkerGray: #222;
-$darkGray: #333;
-$gray: #666;
-$lightGray: #eee;
-$white: #fff;
 $teal: #009288;
+$acent: #64DD17;
+$grey: #9e9e9e;
 
-// Font stacks
-$helvetica: 'Raleway', sans-serif;
-$helveticaNeue: 'Bitter', serif;
+$heading-font: 'Oxygen';
+$base-font: 'Open Sans';
 
-$content-font: 'Raleway', sans-serif;
-$headlines-font: 'Bitter', serif;
-$code-font: 'Source Code Pro', monospace;
-
-$georgia: Georgia, serif;
-
-// Mobile breakpoints
-@mixin mobile {
-  @media screen and (max-width: 640px) {
-    @content;
-  }
-}
+$gradient: linear-gradient(130deg, $teal, $acent);

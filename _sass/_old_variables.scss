@@ -1,0 +1,33 @@
+
+//
+// VARIABLES
+//
+
+// Colors
+$blue: #4183C4;
+
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
+$teal: #009288;
+
+// Font stacks
+$helvetica: 'Raleway', sans-serif;
+$helveticaNeue: 'Bitter', serif;
+
+$content-font: 'Raleway', sans-serif;
+$headlines-font: 'Bitter', serif;
+$code-font: 'Source Code Pro', monospace;
+
+$georgia: Georgia, serif;
+
+// Mobile breakpoints
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}

@@ -2,6 +2,21 @@
 <html>
 {% include head.html %}
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- img -->
+            </div>
+            <div class="col-sm-7">
+                {% include menu.html %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="wrapper-masthead">
     <div class="container">
         <div class="masthead clearfix">

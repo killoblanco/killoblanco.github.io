@@ -1,0 +1,13 @@
+.menu {
+	li a {
+		background: $gradient;
+		font-family: $heading-font;
+		font-weight: bold;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
