@@ -1,10 +1,17 @@
 .menu {
+	margin: 2em 0;
+
 	li a {
 		background: $gradient;
 		font-family: $heading-font;
 		font-weight: bold;
+		font-size: 20px;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+
+		i.fa {
+			color: $acent;
+		}
 
 		&:hover {
 			text-decoration: none;
