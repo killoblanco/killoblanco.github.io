@@ -1,0 +1,10 @@
+<head>
+    {% include meta.html %}
+    <title>
+        {% if page.title %}
+            {{ page.title }} – 
+        {% endif %}
+        {{ site.name }} – {{ site.description }}
+    </title>
+    {% include css.html %}
+</head>
