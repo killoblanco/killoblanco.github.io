@@ -13,6 +13,10 @@ layout: default
 	      </div>
 	      <ul class="list-inline text-right">
 	      	<li>
+	      		<i class="fa fa-calendar-check-o"></i>
+	      		{% include dates.html page=post %}
+	      	</li>
+	      	<li>
 	      		<a href="{{ site.baseurl }}{{ post.url }}" class="read-more">
 	      			Leer mas <i class="fa fa-angle-double-right"></i>
 	      		</a>

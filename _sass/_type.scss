@@ -5,7 +5,10 @@
 
 h1, h2, h3, h4, h5, h5 {
 	font-family: $heading-font !important;
-	color: $teal;
+	color: $teal !important;
+	font-weight: bold !important;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
 }
 
 a {
@@ -13,4 +16,9 @@ a {
 	&:hover {
 		text-decoration: none !important;
 	}
+}
+
+p {
+	line-height: 1.7em;
+	font-size: $font-size-base;
 }
