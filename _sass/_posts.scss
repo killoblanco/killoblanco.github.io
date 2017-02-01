@@ -1,4 +1,14 @@
 .post-list {
-	.post {
-	}
+  .post {
+    h3 {
+      border-bottom: 2px solid;
+      padding-bottom: 1em;
+      margin-bottom: 1em;
+      border-image: linear-gradient(to right, #aeea00 30%, rgba(174, 234, 0, 0) 30%) 1;
+    }
+
+    .preview {
+      font-size: $font-size-base;
+    }
+  }
 }
