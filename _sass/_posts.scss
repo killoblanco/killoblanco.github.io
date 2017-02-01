@@ -15,24 +15,7 @@
   }
 }
 
-.Rectangle_1 {
-  background-color: rgb(0, 0, 0);
-  position: absolute;
-  left: -27px;
-  top: -21px;
-  width: 468px;
-  height: 849px;
-  z-index: 3;
-}
-.Rectangle_1 {
-  background-image: -moz-linear-gradient( 125deg, rgb(0,150,136) 0%, rgb(87,192,68) 48%, rgb(174,234,0) 100%);
-  background-image: -webkit-linear-gradient( 125deg, rgb(0,150,136) 0%, rgb(87,192,68) 48%, rgb(174,234,0) 100%);
-  background-image: -ms-linear-gradient( 125deg, rgb(0,150,136) 0%, rgb(87,192,68) 48%, rgb(174,234,0) 100%);
-  opacity: 0.502;
-  position: absolute;
-  left: -27px;
-  top: -21px;
-  width: 468px;
-  height: 849px;
-  z-index: 5;
+.col-sm-4.side-wrapper {
+    height: 100vh;
+    box-shadow: 6px 6px 14px;
 }
