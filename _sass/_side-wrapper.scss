@@ -3,8 +3,25 @@
   background-attachment: local;
   background-position: 0% 0%;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
   border-radius: 0 10em 10em 0em / 0em 30em 30em 0em;
   box-shadow: 6px 0px 14px rgba(0, 0, 0, .35);
   height: 100vh;
+
+	.brand{
+		color: white !important;
+    margin: 2em 0;
+    font-weight: 400 !important;
+	}
+
+	.page-header {
+		border: none;
+		h2 {
+			color: white !important;
+			small {
+				color: white !important;
+			}
+		}
+	}
+
 }
