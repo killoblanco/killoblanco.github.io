@@ -1,19 +1,21 @@
 .menu {
-	margin: 2em 0;
+  margin: 2em 0;
 
-	li a {
-		background: $gradient;
-		font-family: $heading-font;
-		font-size: 24px;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+  li a {
+    background: $gradient;
+    font-family: $heading-font;
+    font-size: 24px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-		i.fa {
-			color: $acent;
-		}
+    i.fa {
+      background: $gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-		&:hover {
-			text-decoration: none;
-		}
-	}
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

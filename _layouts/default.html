@@ -4,7 +4,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 side-wrapper">
                 <h3>Killo|<b>Blanco</b></h3>
                 <div class="row">
                     <div class="col-sm-12">
@@ -15,17 +15,25 @@
                             </h3>
                         </div>
                     </div>
-                    <div class="col-sm-8 col-sm-push-2">
-                        <img src="{{ site.avatar }}" alt="" class="img-circle img-responsive">
+                    <!--<div class="col-sm-8 col-sm-push-2">-->
+                        <!--<img src="{{ site.avatar }}" alt="" class="img-circle img-responsive">-->
+                    <!--</div>-->
+                </div>
+                <div class="row social-icons">
+                    <div class="col-sm-10 col-sm-push-1">
+                        {% include svg-icons.html %}
                     </div>
                 </div>
-                {% include svg-icons.html %}
             </div>
-            <div class="col-sm-7">
-                {% include menu.html %}
+            <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-sm-12">
-                        {{ content }}
+                    <div class="col-sm-10 col-sm-push-1">
+                        {% include menu.html %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ content }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

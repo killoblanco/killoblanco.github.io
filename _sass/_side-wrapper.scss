@@ -1,0 +1,10 @@
+.side-wrapper {
+  background-image: $gradient-50, $image-1;
+  background-attachment: local;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 0 10em 10em 0em / 0em 30em 30em 0em;
+  box-shadow: 6px 0px 14px rgba(0, 0, 0, .35);
+  height: 100vh;
+}
