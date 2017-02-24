@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+
+    {% include meta.html %}
+    {% include ga.html %}
+    <meta name="google-signin-client_id" content="{{ site.google_analytics }}">
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+    {% include gtm-head.html %}
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}"
+          href="{{ site.baseurl }}/feed.xml"/>
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+</head>
+<body>
+<h1>Hello Analytics Reporting API V4</h1>
+
+<p>
+    <!-- The Sign-in button. This will run `queryReports()` on success. -->
+<div class="g-signin2" data-onsuccess="queryReports"></div>
+</p>
+
+<!-- The API response will be printed here. -->
+<textarea cols="80" rows="20" id="query-output"></textarea>
+
+<script>
+    // Replace with your view ID.
+    var VIEW_ID = '{{ site.ga_view_id }}';
+
+    // Query the API and print the results to the page.
+    function queryReports() {
+        gapi.client.request({
+            path: '/v4/reports:batchGet',
+            root: 'https://analyticsreporting.googleapis.com/',
+            method: 'POST',
+            body: {
+                reportRequests: [
+                    {
+                        viewId: VIEW_ID,
+                        dateRanges: [
+                            {
+                                startDate: '7daysAgo',
+                                endDate: 'today'
+                            }
+                        ],
+                        metrics: [
+                            {
+                                expression: 'ga:sessions'
+                            }
+                        ]
+                    }
+                ]
+            }
+        }).then(displayResults, console.error.bind(console));
+    }
+
+    function displayResults(response) {
+        var formattedJson = JSON.stringify(response.result, null, 2);
+        document.getElementById('query-output').value = formattedJson;
+    }
+</script>
+
+<!-- Load the JavaScript API client and Sign-in library. -->
+<script src="https://apis.google.com/js/client:platform.js"></script>
+</body>
+</html>
