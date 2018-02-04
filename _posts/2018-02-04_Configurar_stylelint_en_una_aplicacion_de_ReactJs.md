@@ -51,7 +51,7 @@ module.exports = {
 }
 ```
 
-Para saber mas hacerca de las opciones que recive `StyleLintPlugin` puedere revisar su (documentación oficial)[https://github.com/JaKXz/stylelint-webpack-plugin#options].
+Para saber mas hacerca de las opciones que recive `StyleLintPlugin` puedere revisar su [documentación oficial](https://github.com/JaKXz/stylelint-webpack-plugin#options).
 
 Con estos pasos hechos hasta aqui solo hace falta definir nuestras reglas para nuestro linter, en este caso solo extenderemos las reglas del la configuración estandar para compartir estilos. Así que, instalemos `stylelint-config-standard` y agreguemos lo a nuestro proyecto.
 
@@ -68,4 +68,4 @@ Por ultimo creamos un archivo con el nombre `.stylelintrc` en la raiz de nuestro
 }
 ```
 
-Puedes leer mas sobre las reglas de `Stylelint` desde su (web oficial)[https://stylelint.io/user-guide/rules/], asi como puedes revisar la documentacion de la configuración estandar (aqui)[https://github.com/stylelint/stylelint-config-standard].
+Puedes leer mas sobre las reglas de `Stylelint` desde su [web oficial](https://stylelint.io/user-guide/rules/), asi como puedes revisar la documentacion de la configuración estandar [aqui](https://github.com/stylelint/stylelint-config-standard).
